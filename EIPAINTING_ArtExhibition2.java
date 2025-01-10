@@ -1,51 +1,35 @@
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 
-public class EIUGIFT1_GiftWrapping {
+
+public class EIPAINTING_ArtExhibition2 {
     static InputReader sc;
 
     public static void main(String[] args) throws IOException {
         sc = new InputReader(System.in);
-
-        int numberOfGifts = sc.nextInt();
-        int numberOfGiftWrap = sc.nextInt();
-
-        int[] giftSizes = new int[numberOfGifts];
-        for (int i = 0; i < numberOfGifts; i++) {
-            giftSizes[i] = sc.nextInt();
-        }
-
-        int[] paperSizes = new int[numberOfGiftWrap];
-        for (int i = 0; i < numberOfGiftWrap; i++) {
-            paperSizes[i] = sc.nextInt();
-        }
-
-        Arrays.sort(giftSizes);
-        Arrays.sort(paperSizes);
-
-        int giftIndex = 0;
-        int paperIndex = 0;
-        int wrappedGifts = 0;
-
-        while (giftIndex < numberOfGifts && paperIndex < numberOfGiftWrap) {
-            if (giftSizes[giftIndex] * 3 < paperSizes[paperIndex]) {
-                giftIndex++;
-
-            } else if (paperSizes[paperIndex] >= 2 * giftSizes[giftIndex]
-                    && paperSizes[paperIndex] <= 3 * giftSizes[giftIndex]) {
-                wrappedGifts++;
-                giftIndex++;
-                paperIndex++;
+        // Scanner sc = new Scanner(System.in);
+        int numbs = sc.nextInt();
+        int max = 0;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < numbs; i++) {
+            int temp = sc.nextInt();
+            if (map.containsKey(temp)) {
+                map.put(temp, map.get(temp) + 1);
+                if (max < map.get(temp)) {
+                    max = map.get(temp);
+                }
             } else {
-                paperIndex++;
+                map.put(temp, 1);
+                if (max < map.get(temp)) {
+                    max = map.get(temp);
+                }
             }
         }
 
-        System.out.println(wrappedGifts);
+        System.out.println(numbs - max);
 
     }
 
