@@ -1,41 +1,10 @@
 import java.io.FileInputStream;
+
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
 import java.util.InputMismatchException;
-import java.util.TreeSet;
 
-public class EIMIN_SmallestElementKhac0 {
-    static InputReader sc;
-
-    public static void main(String[] args) throws IOException {
-        sc = new InputReader(System.in);
-        int nums = sc.nextInt();
-        int times = sc.nextInt();
-        int prevMin = 0;
-        TreeSet<Integer> set = new TreeSet<>();
-        for (int i = 0; i < nums; i++) {
-            int num = sc.nextInt();
-            if (num != 0) {
-                set.add(num);
-            }
-        }
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < times; i++) {
-            if (set.isEmpty()) {
-                sb.append("0\n");
-            } else {
-                int temp = set.pollFirst();
-                sb.append(temp - prevMin).append("\n");
-                prevMin = temp;
-            }
-
-        }
-
-        System.out.println(sb);
-
-    }
-
+public class AAAAA {
     static class InputReader {
         private byte[] inbuf = new byte[2 << 23];
         public int lenbuf = 0, ptrbuf = 0;
@@ -163,5 +132,4 @@ public class EIMIN_SmallestElementKhac0 {
             }
         }
     }
-
 }
