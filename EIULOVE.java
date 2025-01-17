@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class EIUGIFTS_WomanDay {
+public class EIULOVE {
     private static InputReader reader;
 
     public static void main(String[] args) throws IOException {
@@ -12,38 +12,19 @@ public class EIUGIFTS_WomanDay {
         reader = new InputReader(System.in);
         int numOfGifts = reader.nextInt();
         long budget = reader.nextLong();
-        int[] prices = new int[numOfGifts];
-
+        long highestNum = 0;
         for (int i = 0; i < numOfGifts; i++) {
-            prices[i] = reader.nextInt();
-        }
-
-        Arrays.sort(prices);
-
-        int left = 0, right = numOfGifts - 1;
-        int bestSum = -1;
-        int bestDiff = Integer.MAX_VALUE;
-
-        while (left < right) {
-            int sum = prices[left] + prices[right];
-            int diff = Math.abs(prices[left] - prices[right]);
-
-            if (sum <= budget) {
-                if (sum > bestSum || (sum == bestSum && diff < bestDiff)) {
-                    bestSum = sum;
-                    bestDiff = diff;
-                }
-                left++;
-            } else {
-                right--;
+            long temp = reader.nextLong();
+            if (temp >= highestNum && temp <= budget) {
+                highestNum = temp;
             }
         }
-
-        if (bestSum == -1) {
-            System.out.println("-1 -1");
+        if (highestNum == 0) {
+            System.out.println(-1);
         } else {
-            System.out.println(bestSum + " " + bestDiff);
+            System.out.println(highestNum);
         }
+
     }
 
     static class InputReader {
@@ -64,7 +45,8 @@ public class EIUGIFTS_WomanDay {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-                if (lenbuf <= 0) return -1;
+                if (lenbuf <= 0)
+                    return -1;
             }
             return inbuf[ptrbuf++];
         }
