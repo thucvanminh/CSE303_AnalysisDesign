@@ -17,33 +17,30 @@ public class EIEQUALS_Permutation {
         }
         for (int i = 0; i < n; i++) {
             int num = sc.nextInt();
-            if (map.get(num) != null) {
-                map.put(num, map.get(num) - 1);
-                if (map.get(num) == 0) {
-                    map.remove(num);
+            map.put(num, map.getOrDefault(num, 0) - 1);
+            if (map.get(num) == 0)
+                map.remove(num);
+        }
+        if (map.size() == 0) {
+            System.out.println("YES");
+        } else {
+            for (Integer each : map.keySet()) {
+                if (differ == 0)
+                    differ = each;
+                else {
+                    int result = Math.abs(differ - each);
+                    if (result <= change) {
+                        System.out.println("YES");
+                        break;
+                    } else {
+                        System.out.println("NO");
+                        break;
+                    }
                 }
-            } else {
-                differ = num;
-            }
-        }
-        for (int i = 0; i < change; i++) {
-            differ++;
-            if (map.get(differ) != null) {
-                map.remove(differ);
-            }
-        }
-        for (int i = 0; i < change; i++) {
-            differ--;
-            if (map.get(differ) != null) {
-                map.remove(differ);
+
             }
         }
 
-        if (map.isEmpty()) {
-            System.out.println("YES");
-        } else {
-            System.out.println("NO");
-        }
     }
 
     static class InputReader {
