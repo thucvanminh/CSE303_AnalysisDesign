@@ -16,7 +16,6 @@ public class SUBSET2 {
         int target = sc.nextInt();
         int count = 0;
         int[] arr = new int[n];
-        HashSet<ArrayList> set = new HashSet<>();
 
         for (int i = 0; i < n; i++) {
             int temp = sc.nextInt();
@@ -24,19 +23,18 @@ public class SUBSET2 {
         }
         int totalSubsets = 1 << n;
 
-        for (int mask = 0; mask < totalSubsets; mask++) {
+        for (int i = 0; i < totalSubsets; i++) {
             List<Integer> subset = new ArrayList<>();
             int total = 0;
-            for (int i = 0; i < n; i++) {
-                if ((mask & (1 << i)) != 0) {
-                    subset.add(arr[i]);
-                    total += arr[i];
+            for (int j = 0; j < n; j++) {
+                if ((i & (1 << j)) != 0) {
+                    subset.add(arr[j]);
+                    total += arr[j];
                 }
             }
             if (total == target) {
                 count++;
             }
-            // System.out.println(subset);
         }
         System.out.println(count);
     }

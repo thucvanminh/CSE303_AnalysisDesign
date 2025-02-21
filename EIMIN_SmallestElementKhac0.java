@@ -36,6 +36,25 @@ public class EIMIN_SmallestElementKhac0 {
 
     }
 
+    static void doTask(int rounds, TreeSet<Integer> set) {
+        StringBuilder sb = new StringBuilder();
+        int preMin = 0;
+        for (int i = 0; i < rounds; i++) {
+            if (set.isEmpty()) {
+                sb.append("0\n");
+            }
+            else{
+                int temp = set.pollFirst();
+                sb.append(temp - preMin).append("\n");
+                preMin = temp;
+                if(i == set.size()-1){
+                    set.add(0);
+                }
+            }
+
+        }
+    }
+
     static class InputReader {
         private byte[] inbuf = new byte[2 << 23];
         public int lenbuf = 0, ptrbuf = 0;
@@ -80,7 +99,7 @@ public class EIMIN_SmallestElementKhac0 {
             int b = skip();
             StringBuilder sb = new StringBuilder();
             while (!(isSpaceChar(b))) { // when nextLine, (isSpaceChar(b) && b
-                                        // != ' ')
+                // != ' ')
                 sb.appendCodePoint(b);
                 b = readByte();
             }
