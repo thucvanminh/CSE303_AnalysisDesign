@@ -1,13 +1,37 @@
 import java.io.FileInputStream;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.InputMismatchException;
+import java.util.Scanner;
 
-public class AAAAA {
-    public static InputReader golbalReader() throws IOException {
+ class EIUCOL_MuaThucPham_DynamicProgramming {
+    public static void main(String[] args) throws IOException {
+
         InputReader sc = new InputReader(System.in);
-        return sc;
+        int n = sc.nextInt();
+        int[] dp = new int[n + 1];
+        dp[0] = 0;
+        for (int i = 1; i <= n; i++) {
+            dp[i] = -1;
+        }
+
+        int p1 = sc.nextInt();
+        int p2 = sc.nextInt();
+        int p3 = sc.nextInt();
+        for (int i = 1; i <= n; i++) {
+            if (i >= p1 && dp[i - p1] != -1) {
+                dp[i] = Math.max(dp[i], dp[i - p1] + 1);
+            }
+            if (i >= p2 && dp[i - p2] != -1) {
+                dp[i] = Math.max(dp[i], dp[i - p2] + 1);
+            }
+            if (i >= p3 && dp[i - p3] != -1) {
+                dp[i] = Math.max(dp[i], dp[i - p3] + 1);
+            }
+        }
+
+        System.out.println(dp[n]);
+
     }
 
     static class InputReader {

@@ -1,15 +1,36 @@
 import java.io.FileInputStream;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.InputMismatchException;
 
-public class AAAAA {
-    public static InputReader golbalReader() throws IOException {
-        InputReader sc = new InputReader(System.in);
-        return sc;
-    }
 
+public class Logging1 {
+    public static void main(String[] args) throws IOException {
+        InputReader sc = new InputReader(System.in);
+        long n = sc.nextLong();
+
+
+        long[] arrInput = new long[(int) (n + 2)];
+        arrInput[0] = 0;
+        arrInput[1] = 0;
+
+        long[] maxArr = new long[(int)n + 2];
+        maxArr[0] = 0;
+        maxArr[1] = 0;
+
+        for (int i = 2; i < n+2; i++) {
+            arrInput[i] = sc.nextInt();
+        }
+
+        for (int i = 2; i < n+2; i++) {
+            long cut = arrInput[i] + maxArr[i - 2];
+            long noCut = maxArr[i - 1];
+
+            maxArr[i] = Math.max(cut,noCut);
+        }
+
+        System.out.println(maxArr[(int) n+1]);
+    }
     static class InputReader {
         private byte[] inbuf = new byte[2 << 23];
         public int lenbuf = 0, ptrbuf = 0;

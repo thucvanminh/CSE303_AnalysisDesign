@@ -1,13 +1,49 @@
 import java.io.FileInputStream;
-
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.InputMismatchException;
 
-public class AAAAA {
-    public static InputReader golbalReader() throws IOException {
-        InputReader sc = new InputReader(System.in);
-        return sc;
+public class EIUTHIEF2_Trom2 {
+    public static void main(String[] args) throws IOException {
+        InputReader scanner = new InputReader(System.in);
+        
+        // Read N and P
+        int n = scanner.nextInt();
+        int p = scanner.nextInt();
+        
+        // Read items (weight and value)
+        int[] weights = new int[n];
+        int[] values = new int[n];
+        for (int i = 0; i < n; i++) {
+            weights[i] = scanner.nextInt();
+            values[i] = scanner.nextInt();
+        }
+        
+        // Initialize DP array
+        long[] dp = new long[p + 1];
+        
+        // Fill DP array
+        for (int i = 0; i < n; i++) {
+            int w = weights[i];
+            int v = values[i];
+            for (int j = p; j >= w; j--) {
+                if (dp[j - w] + v > dp[j]) {
+                    dp[j] = dp[j - w] + v;
+                }
+            }
+        }
+        
+        // Find the maximum value in the DP array
+        long maxValue = 0;
+        for (long value : dp) {
+            if (value > maxValue) {
+                maxValue = value;
+            }
+        }
+        
+        // Output the result
+        System.out.println(maxValue);
     }
 
     static class InputReader {

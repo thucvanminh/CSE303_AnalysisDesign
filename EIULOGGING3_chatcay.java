@@ -1,13 +1,41 @@
 import java.io.FileInputStream;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.InputMismatchException;
 
-public class AAAAA {
-    public static InputReader golbalReader() throws IOException {
+public class EIULOGGING3_chatcay {
+    public static void main(String[] args) throws IOException {
         InputReader sc = new InputReader(System.in);
-        return sc;
+        int n = sc.nextInt();
+        int[] trees = new int[n + 2];
+        long[] dp = new long[n + 2];
+        long[] counts = new long[n + 2];
+        trees[0] = 0;
+        trees[1] = 0;
+        dp[0] = 0;
+        dp[1] = 0;
+        counts[0] = 1;
+        counts[1] = 1;
+        for (int i = 2; i < n + 2; i++) {
+            trees[i] = sc.nextInt();
+            counts[i] = 1;
+        }
+
+        for (int i = 2; i < n + 2; i++) {
+            long cut = dp[i - 2] + trees[i];
+            long noCut = dp[i - 1];
+            if (noCut == cut) {
+                counts[i] = (counts[i - 1] + counts[i - 2]) % (1000000000 + 7);
+            } else if (cut > noCut) {
+                counts[i] = counts[i - 2] % (1000000000 + 7);
+            } else {
+                counts[i] = counts[i - 1] % (1000000000 + 7);
+            }
+
+            dp[i] = Math.max(cut, noCut);
+        }
+
+        System.out.println(dp[n + 1] + " " + counts[n + 1]);
     }
 
     static class InputReader {
